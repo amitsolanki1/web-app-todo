@@ -1,0 +1,60 @@
+{% extends "layout.html "%}
+{% block title %} Home {% endblock title %}
+{% block body %}
+
+<div class="container my-3">
+    <h3 class="center grey lighten-1 offset-50 ">Todo</h3>
+    {% if session.log %}
+    <form action="/add_new" method="POST" class="input">
+           <label for="title">Title</label>
+           <input type="text" name="title" id="title">
+            <label for="desc">Description</label>
+            <input type="text" name="desc" id="desc">
+        <input type="submit" value="Add" class="btn blue center ">
+    </form>
+</div>
+<div class="container my-3">
+    <h4 class=" center grey lighten-1">Your Todo</h4>
+    {% if all_data|length ==0 %}
+    <div class="alert alert-dark grey lighten-2 " role="alert">
+        No todos found. Add your first task now!!
+    </div>
+    {% else %}
+    <table class="table highlight">
+        <thead>
+            <tr class="row l9 m9 s12">
+                    <th scope="col">Sno</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Completed</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            {% for todo in all_data %}
+            <tr class="row l9 m9 s12">
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.description}}</td>
+                <td>{{todo.time_}}</td>
+                {% if todo.complete %} 
+                <td><span>Completed</span></td>
+                {% else %}
+                <td><span>Not complete</span></td>
+                {% endif %}
+                <td>{{todo.date_time}}</td>
+                <td>
+                    <a href="/update/{{todo.id}}" type="button" class="btn blue btn-outline-dark" ><i class="materials dark-text">edit</i> Edit</a>
+                    <a href="/delete/{{todo.id}}"type="button" class="btn red outline"  >Delete</a> 
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+{% else %}
+<h3>Please Login to create yours todo!!</h3>
+    <a href="login">Login Here!</a>
+{% endif %}
+{% endblock %}

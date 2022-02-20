@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}LOGIN {% endblock %}
+{% block body %}
+<div class="container ">
+    <h2 class="center">Login</h2>
+    {% for categories,message in get_flashed_messages(with_categories=True) %}
+    <div class="alert {{categories}} alert-dismissable" rule="alert">
+    <!-- <p class="alert {{categories}} px-4 offset-50"> -->
+        <button class="close" data-dismise="alert" aria-label="close">
+            <span aria-hidden="ture">X</span>
+        </button>
+        {{message}}
+    <!-- </p> -->
+</div>
+    {% endfor %}
+
+    <form action="/login" method="POST">
+        <label for="name">Email ID</label>
+        <input type="email" name="email" id="name">
+        <label for="pass">Password</label>
+        <input type="password" name="pass" id="pass">
+        <input type="submit" class="btn btn-outline blue" value="Login" >
+    </form>
+</div>
+{% endblock %}

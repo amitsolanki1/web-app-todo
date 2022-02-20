@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Register {% endblock%}
+{% block body %}
+<div class="container">
+    <h1>Register</h1>
+    {% for categories,message in get_flashed_messages(with_categories=True) %}
+    <p class="container {{categories}}">
+    {{message}}
+    </p>
+    {% endfor %}        
+    <form action="/register" method="POST" class=" input">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <label for="Email ID">Email ID</label> 
+        <input type="email" name="email" id="Email ID">
+        
+        <label for="pass">Password</label> 
+        <input type="password" name="pass" id="pass">
+        
+        <label for="c_pass">Confirm password</label> 
+        <input type="password" name="c_pass" id="c_pass">
+
+        <input type="submit" value="Register" class="btn btn blue">
+    </form>
+</div>
+{% endblock %}

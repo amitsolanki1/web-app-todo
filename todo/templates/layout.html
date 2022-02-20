@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}">
+    <title>{% block title %} {% endblock title %}-MyTODO</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <ul class="hide-on-small-and-down center">
+                
+                <li><a href="/" class="nav active">Home</a></li>
+                {% if session.log %}
+                <li><a href="/photo" class="nav-bar">photo</a></li>
+                <li><a href="/logout" class="nav-bar">Logout</a></li>
+                <ul class="right">
+                    <span class=" black-text circle mr-3 btn blue">
+                          Hi! {{session.log}}               
+                    </span>
+                </ul>
+                {% else %}
+                <li><a href="/login" class="nav-bar">Login</a></li>
+                <li><a href="/register" class="nav-bar">Register</a></li>
+                <li><a href="/about" class="nav-bar">About</a></li>
+                {% endif %}
+            </ul>
+            
+            
+        </div>
+    </nav>
+    {% include "message.html" %}
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

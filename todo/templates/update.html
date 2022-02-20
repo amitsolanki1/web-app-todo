@@ -1,0 +1,21 @@
+{% if session.log %}
+{% extends "layout.html" %}
+{% block title %} Update {% endblock %}
+{% block body %}
+<div class="container grey lighten-2">
+<div class="center">
+    <h4>Update your Todo </h4><p>No.{{result.id}} </p>
+</div>
+    <form action="/update/{{result.id}}" method="POST" class="input">
+        <label for="tit">Title</label>
+        <input type="text" name="title" id="tit" value="{{result.title}}">
+        <label for="desc">Description</label>
+        <input type="text" name="desc" id="desc" value="{{result.description}}">
+
+    <input type="submit" value="Update" class="btn blue">
+</form>
+</div>
+{% endblock %}
+{% else %}
+{% include "error.html" %}
+{% endif %}
